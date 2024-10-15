@@ -4,12 +4,12 @@ const Story = () => {
   return (
     <div className="flex flex-col items-center space-y-2">
       <div className="relative">
-        <div className="w-16 h-16 rounded-full bg-gradient-to-tr from-pink-500 to-yellow-500 p-[3px]">
+        <div className="w-16 h-16 rounded-full bg-gradient-to-tr from-pink-500 to-yellow-500 flex items-center justify-center p-[2px]">
           <button className="w-full h-full rounded-full bg-white flex items-center justify-center">
             <Image
               src="/images/profile.png"
-              width={60}
-              height={60}
+              width={56}
+              height={56}
               alt="Picture of the author"
             />
           </button>

@@ -7,15 +7,15 @@ import { FaRegBookmark } from 'react-icons/fa'
 
 const Post = () => {
   return (
-    <div className="flex flex-col w-full h-full justify-between gap-2.5">
+    <div className="flex flex-col w-full justify-between gap-2.5">
       <div className="flex flex-row items-center justify-between gap-3">
         <div className="flex flex-row items-center justify-between gap-3">
-          <div className="w-10 h-10 rounded-full bg-gradient-to-tr from-pink-500 to-yellow-500 p-[3px]">
+          <div className="w-10 h-10 rounded-full bg-gradient-to-tr from-pink-500 to-yellow-500 flex items-center justify-center p-[2px]">
             <button className="w-full h-full rounded-full bg-white flex items-center justify-center">
               <Image
                 src="/images/profile.png"
-                width={60}
-                height={60}
+                width={32}
+                height={32}
                 alt="Picture of the author"
               />
             </button>
@@ -24,17 +24,18 @@ const Post = () => {
           <span className="w-1 h-1 bg-gray-500 rounded-full"></span>
           <p className="text-sm">1h</p>
         </div>
-
-        <BsThreeDots />
+        <button>
+          <BsThreeDots />
+        </button>
       </div>
-      <Image
-        src="/images/post.jpg"
-        width={500}
-        height={500}
-        // fill={true}
-        // layout="fill"
-        alt="Picture of the author"
-      />
+      <div className="relative h-[600px]">
+        <Image
+          src="/images/post.jpg"
+          fill={true}
+          // layout="fill"
+          alt="Picture of the author"
+        />
+      </div>
       <div className="flex flex-col w-full gap-3">
         <div className="flex flex-row justify-between w-full">
           <div className="flex flex-row gap-5">
@@ -67,7 +68,7 @@ const Post = () => {
           </button>
           <p className="text-gray-500">Add a comment...</p>
         </div>
-        <hr />
+        <hr className="border-t-1" />
       </div>
     </div>
   )
