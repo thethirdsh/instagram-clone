@@ -15,7 +15,7 @@ const Story = () => {
           </button>
         </div>
       </div>
-      <p className="text-center text-sm">Username</p>
+      <p className="text-center text-xs">Username</p>
     </div>
   )
 }

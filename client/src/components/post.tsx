@@ -20,7 +20,7 @@ const Post = () => {
               />
             </button>
           </div>
-          <p className="text-sm">Username</p>
+          <p className="text-sm font-semibold">Username</p>
           <span className="w-1 h-1 bg-gray-500 rounded-full"></span>
           <p className="text-sm">1h</p>
         </div>
