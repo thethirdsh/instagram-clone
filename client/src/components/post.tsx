@@ -7,7 +7,7 @@ import { FaRegBookmark } from 'react-icons/fa'
 
 const Post = () => {
   return (
-    <div className="flex flex-col w-full justify-between gap-2.5">
+    <div className="flex flex-col w-full h-full justify-between gap-2.5">
       <div className="flex flex-row items-center justify-between gap-3">
         <div className="flex flex-row items-center justify-between gap-3">
           <div className="w-10 h-10 rounded-full bg-gradient-to-tr from-pink-500 to-yellow-500 flex items-center justify-center p-[2px]">
