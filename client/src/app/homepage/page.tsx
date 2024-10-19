@@ -19,21 +19,23 @@ const Homepage = () => {
   }, [])
 
   return (
-    <div className="flex md:flex-row lg:flex-row justify-center min-h-screen w-full">
+    <>
       {windowWidth >= 1366 && (
-        <div className="flex flex-row h-full md:flex md:w-[14.5%]">
+        <div className="flex flex-row fixed h-full md:flex md:w-[14.5%]">
           <Sidebar />
           <div className="border-l border-gray-200 h-screen"></div>
         </div>
       )}
-      <div className="ml-0 flex flex-row justify-center w-[84.5%]">
-        <div className="">
-          <Feed />
-        </div>
+      <div className="flex md:flex-row lg:flex-row justify-center min-h-screen w-full">
+        <div className="ml-56 flex flex-row justify-center sm:w-[90%] md:w-[70%] w-[84.5%]">
+          <div className="">
+            <Feed />
+          </div>
 
-        <div className="pl-20">{windowWidth >= 860 && <RightSidebar />}</div>
+          <div className="pl-20">{windowWidth >= 860 && <RightSidebar />}</div>
+        </div>
       </div>
-    </div>
+    </>
   )
 }
 
