@@ -3,33 +3,19 @@
 import Image from 'next/image'
 import Sidebar from '@/components/sidebar'
 import { BsThreeDots } from 'react-icons/bs'
-import { useEffect, useState } from 'react'
 import { MdOutlineGridOn } from 'react-icons/md'
 import { BiMoviePlay } from 'react-icons/bi'
 import { LiaUserTagSolid } from 'react-icons/lia'
 import Footer from '@/components/footer'
 
 const Profile = () => {
-  const [windowWidth, setWindowWidth] = useState(0) // Initialize with a default value
-
-  useEffect(() => {
-    const handleResize = () => setWindowWidth(window.innerWidth)
-
-    // Set initial width on mount
-    handleResize()
-
-    window.addEventListener('resize', handleResize)
-    return () => window.removeEventListener('resize', handleResize)
-  }, [])
-
   return (
     <>
-      {windowWidth >= 1366 && (
-        <div className="flex flex-row fixed h-full md:flex md:w-[14.5%]">
-          <Sidebar />
-          <div className="border-l border-gray-200 h-screen"></div>
-        </div>
-      )}
+      <div className="hidden lg:flex flex-row fixed h-full lg:w-[14.5%]">
+        <Sidebar />
+        <div className="border-l border-gray-200 h-screen"></div>
+      </div>
+
       <div className="flex flex-col justify-center items-center w-full h-full pl-20 md:pl-0">
         <div className="flex flex-col justify-center items-center pt-6 lg:ml-48">
           <div className="flex flex-col justify-center items-center">
@@ -62,7 +48,7 @@ const Profile = () => {
                   </div>
                   <p className="text-xl mr-5">username</p>
                   <div className="flex flex-row gap-2">
-                    <button className="flex flex-row font-medium rounded-lg bg-gray-200 text-sm px-4 py-1 h-7">
+                    <button className="flex flex-row font-medium rounded-lg bg-gray-200 text-sm px-4 py-1 h-7 hover:bg-gray-300">
                       Following
                       <svg
                         className="-mr-1 h-5 w-5 text-black"
@@ -78,7 +64,7 @@ const Profile = () => {
                         />
                       </svg>
                     </button>
-                    <button className="font-medium rounded-lg bg-gray-200 text-sm px-4 py-1 h-7">
+                    <button className="font-medium rounded-lg bg-gray-200 text-sm px-4 py-1 h-7 hover:bg-gray-300">
                       Message
                     </button>
                   </div>
@@ -223,69 +209,69 @@ const Profile = () => {
             </div>
           </div>
           <div className="grid grid-cols-3 gap-1 w-[45%] md:w-[90%] lg:w-[100%]">
-            <div className="relative size-[8rem] md:size-[16rem] lg:size-[18rem]">
+            <button className="relative size-[8rem] md:size-[16rem] lg:size-[18rem] hover:opacity-75">
               <Image
                 src="/images/post.jpg"
                 fill={true}
                 alt="Picture of the author"
               />
-            </div>
-            <div className="relative size-[8rem] md:size-[16rem] lg:size-[18rem]">
+            </button>
+            <button className="relative size-[8rem] md:size-[16rem] lg:size-[18rem] hover:opacity-75">
               <Image
                 src="/images/post.jpg"
                 fill={true}
                 alt="Picture of the author"
               />
-            </div>
-            <div className="relative size-[8rem] md:size-[16rem] lg:size-[18rem]">
+            </button>
+            <button className="relative size-[8rem] md:size-[16rem] lg:size-[18rem] hover:opacity-75">
               <Image
                 src="/images/post.jpg"
                 fill={true}
                 alt="Picture of the author"
               />
-            </div>
-            <div className="relative size-[8rem] md:size-[16rem] lg:size-[18rem]">
+            </button>
+            <button className="relative size-[8rem] md:size-[16rem] lg:size-[18rem] hover:opacity-75">
               <Image
                 src="/images/post.jpg"
                 fill={true}
                 alt="Picture of the author"
               />
-            </div>
-            <div className="relative size-[8rem] md:size-[16rem] lg:size-[18rem]">
+            </button>
+            <button className="relative size-[8rem] md:size-[16rem] lg:size-[18rem] hover:opacity-75">
               <Image
                 src="/images/post.jpg"
                 fill={true}
                 alt="Picture of the author"
               />
-            </div>
-            <div className="relative size-[8rem] md:size-[16rem] lg:size-[18rem]">
+            </button>
+            <button className="relative size-[8rem] md:size-[16rem] lg:size-[18rem] hover:opacity-75">
               <Image
                 src="/images/post.jpg"
                 fill={true}
                 alt="Picture of the author"
               />
-            </div>
-            <div className="relative size-[8rem] md:size-[16rem] lg:size-[18rem]">
+            </button>
+            <button className="relative size-[8rem] md:size-[16rem] lg:size-[18rem] hover:opacity-75">
               <Image
                 src="/images/post.jpg"
                 fill={true}
                 alt="Picture of the author"
               />
-            </div>
-            <div className="relative size-[8rem] md:size-[16rem] lg:size-[18rem]">
+            </button>
+            <button className="relative size-[8rem] md:size-[16rem] lg:size-[18rem] hover:opacity-75">
               <Image
                 src="/images/post.jpg"
                 fill={true}
                 alt="Picture of the author"
               />
-            </div>
-            <div className="relative size-[8rem] md:size-[16rem] lg:size-[18rem]">
+            </button>
+            <button className="relative size-[8rem] md:size-[16rem] lg:size-[18rem] hover:opacity-75">
               <Image
                 src="/images/post.jpg"
                 fill={true}
                 alt="Picture of the author"
               />
-            </div>
+            </button>
           </div>
           <div></div>
         </div>
