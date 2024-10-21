@@ -45,7 +45,7 @@ const Sidebar = () => {
               Explore
             </p>
           </button>
-          <button className="pl-3 pt-2 pb-2 mb-1 mt-1 flex flex-row items-center rounded-lg hover:bg-gray-200">
+          <button onClick={() => {router.push('/reels')}} className="pl-3 pt-2 pb-2 mb-1 mt-1 flex flex-row items-center rounded-lg hover:bg-gray-200">
             <BiMoviePlay className="text-3xl" />
             <p className="text-xs md:text-sm lg:text-base pl-4 hidden lg:flex">
               Reels
