@@ -224,7 +224,7 @@ const Messages = () => {
           <p className="text-sm text-gray-500 mt-1">
             Send a message to start a chat.
           </p>
-          <button className="flex justify-center items-center rounded-md bg-[#0095F6] mt-4 w-32 h-8">
+          <button className="flex justify-center items-center rounded-md bg-[#0095F6] mt-4 w-32 h-8 hover:bg-blue-500">
             <p className="text-white font-medium text-sm">Send message</p>
           </button>
         </div>
