@@ -35,7 +35,6 @@ const Post = () => {
         <Image
           src="/images/post.jpg"
           fill={true}
-          // layout="fill"
           alt="Picture of the author"
         />
       </div>
