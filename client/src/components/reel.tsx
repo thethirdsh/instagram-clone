@@ -10,6 +10,8 @@ import { PiDotsThreeBold } from 'react-icons/pi'
 import { useState } from 'react'
 import { FaHeart } from 'react-icons/fa6'
 import { IoVolumeMedium } from 'react-icons/io5'
+import { IoMusicalNotes } from 'react-icons/io5'
+import { LuDot } from 'react-icons/lu'
 
 const Reel = () => {
   const [isLiked, setIsLiked] = useState(false)
@@ -17,23 +19,26 @@ const Reel = () => {
   return (
     <div className="flex flex-row w-[350px] md:w-[550px] h-[600px] lg:h-[846.3px]">
       <div className="flex justify-center items-center rounded-md shadow-lg shadow-neutral-400 w-[80.5%] md:w-[65.5%] lg:w-[86.5%]">
-        <div className="relative w-full h-full">
-          <div className="absolute top-2 right-2 flex justify-center rounded-full items-center bg-gray-600 w-8 h-8 z-10">
+        <div className="relative w-full h-full rounded bg-black">
+          <div className="absolute top-3 right-9 z-20">
             <IoVolumeMedium
               onClick={() => setIsMuted(!isMuted)}
               className={`${
                 isMuted ? 'hidden' : ''
               } absolute text-2xl text-white text-black z-10`}
             />
+          </div>
+          <div className="absolute top-2.5 right-10 z-20">
             <Mute
               onClick={() => setIsMuted(!isMuted)}
               className={`${!isMuted ? 'hidden' : ''} w-7 h-7 absolute z-10`}
             />
           </div>
+          <div className="absolute top-2 right-2 flex justify-center rounded-full items-center opacity-55 bg-gray-600 w-8 h-8 z-10"></div>
           <div className="absolute flex flex-col bottom-2 left-4 z-10 w-[97%] h-fit">
             <div className="pb-2">
               <div className="flex flex-row items-center z-10 pb-1 h-12">
-                <button className="relative flex flex-row w-8 h-8 rounded-full bg-white flex items-center justify-center z-10">
+                <button className="relative flex flex-row w-8 h-8 rounded-full flex items-center justify-center z-10">
                   <Image
                     src="/images/profile.png"
                     fill={true}
@@ -55,16 +60,22 @@ const Reel = () => {
                   </p>
                 </button>
               </div>
-              <div className='flex flex-row rounded-xl bg-gray-600 w-[86%] h-[1.5rem] mt-4'></div>
+              <div className="flex items-center rounded-3xl opacity-55 bg-zinc-800 w-[81.5%] h-[1.75rem] mt-4"></div>
+              <div className="absolute bottom-0.5 left-1 flex flex-row items-center opacity-100 pb-2.5 pl-2">
+                <IoMusicalNotes className="text-white text-sm" />
+                <p className="text-white text-sm pl-1">mkt6_sa45</p>
+                <LuDot className="text-white fill-white" />
+                <p className="text-white text-sm">Original audio</p>
+              </div>
             </div>
           </div>
-          <Image
+          {/* <Image
             src="/images/post.jpg"
             fill={true}
             // layout="fill"
             alt="Picture of the author"
             className="rounded"
-          />
+          /> */}
         </div>
       </div>
       <div className="flex flex-col justify-end items-center pb-1 pl-3.5 w-[13%]">

@@ -12,47 +12,47 @@ import { FaThreads } from 'react-icons/fa6'
 import { LuAlignJustify } from 'react-icons/lu'
 import { useRouter } from 'next/navigation'
 import { FaInstagram } from 'react-icons/fa'
-
+import Link from 'next/link'
 const MessagesSidebar = () => {
   const router = useRouter()
 
   return (
     <div className="flex flex-col pt-2 pb-2 pr-1.5 pl-2 justify-between w-full h-screen">
       <div className="flex flex-col justify-center items-center">
-        <button className="flex items-center rounded-lg pl-4 pr-3 pt-6 pb-4 mb-5 font-dancingScript font-black w-full text-xl md:text-2xl lg:text-3xl hover:bg-gray-200">
+        <Link href="/homepage" className="flex items-center rounded-lg pl-4 pr-3 pt-6 pb-4 mb-5 font-dancingScript font-black w-full text-xl md:text-2xl lg:text-3xl hover:bg-gray-200">
           <FaInstagram className="" />
-        </button>
+        </Link>
         <div className="flex flex-col w-full">
-          <button
-            onClick={() => router.push('/homepage')}
+          <Link
+            href="/homepage"
             className="pt-2 pb-2 mb-1 mt-1 flex flex-row justify-center items-center rounded-lg hover:bg-gray-200"
           >
             <PiHouseBold className="text-3xl" />
-          </button>
+          </Link>
           <button className="pt-2 pb-2 mb-1 mt-1 flex flex-row justify-center items-center rounded-lg hover:bg-gray-200">
             <FiSearch className="text-3xl" />
           </button>
-          <button className="pt-2 pb-2 mb-1 mt-1 flex flex-row justify-center items-center rounded-lg hover:bg-gray-200">
+          <Link href="/explore" className="pt-2 pb-2 mb-1 mt-1 flex flex-row justify-center items-center rounded-lg hover:bg-gray-200">
             <FaRegCompass className="text-3xl" />
-          </button>
-          <button className="pt-2 pb-2 mb-1 mt-1 flex flex-row justify-center items-center rounded-lg hover:bg-gray-200">
+          </Link>
+          <Link href="reels" className="pt-2 pb-2 mb-1 mt-1 flex flex-row justify-center items-center rounded-lg hover:bg-gray-200">
             <BiMoviePlay className="text-3xl" />
-          </button>
-          <button className="pt-2 pb-2 mb-1 mt-1 flex flex-row justify-center items-center rounded-lg hover:bg-gray-200">
+          </Link>
+          <Link href="messages" className="pt-2 pb-2 mb-1 mt-1 flex flex-row justify-center items-center rounded-lg hover:bg-gray-200">
             <RiMessengerLine className="text-3xl" />
-          </button>
+          </Link>
           <button className="pt-2 pb-2 mb-1 mt-1 flex flex-row justify-center items-center rounded-lg hover:bg-gray-200">
             <FaRegHeart className="text-3xl" />
           </button>
           <button className="pt-2 pb-2 mb-1 mt-1 flex flex-row justify-center items-center rounded-lg hover:bg-gray-200">
             <FaRegSquarePlus className="text-3xl" />
           </button>
-          <button
-            onClick={() => router.push('/profile')}
+          <Link
+            href="/profile"
             className="pt-2 pb-2 mb-1 mt-1 flex flex-row justify-center items-center rounded-lg hover:bg-gray-200"
           >
             <CgProfile className="text-3xl" />
-          </button>
+          </Link>
         </div>
       </div>
       <div className="flex flex-col justify-center items-center w-full">
