@@ -17,7 +17,7 @@ const config: Config = {
         billabong: ['var(--font-billabong)'],
       },
       boxShadow: {
-        '3xl': '0 10px 40px -10px rgba(0, 0, 0, 0.5), 0 10px 20px rgba(0, 0, 0, 0.3)',
+        '3xl': '10px 0 30px -5px rgba(0, 0, 0, 0.5), -10px 0 30px -5px rgba(0, 0, 0, 0.5)',
       }
     },
   },

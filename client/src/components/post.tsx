@@ -4,8 +4,11 @@ import { FaRegHeart } from 'react-icons/fa'
 import { FiSend } from 'react-icons/fi'
 import Comment from '../../icons/comment.svg'
 import { FaRegBookmark } from 'react-icons/fa'
+import { FaHeart } from 'react-icons/fa6'
+import { useState } from 'react'
 
 const Post = () => {
+  const [isLiked, setIsLiked] = useState(false)
   return (
     <div className="flex flex-col w-full h-full justify-between gap-2.5">
       <div className="flex flex-row items-center justify-between gap-3">
@@ -40,7 +43,16 @@ const Post = () => {
         <div className="flex flex-row justify-between w-full">
           <div className="flex flex-row gap-5">
             <button>
-              <FaRegHeart className="text-2xl" />
+              <FaHeart
+                onClick={() => setIsLiked(!isLiked)}
+                className={`${
+                  isLiked ? '' : 'hidden'
+                } text-2xl text-[#FD1D1D] fill-current`}
+              />
+              <FaRegHeart
+                onClick={() => setIsLiked(!isLiked)}
+                className={`${isLiked ? 'hidden' : ''} text-2xl`}
+              />
             </button>
             <button>
               <Comment className="w-6 h-5.5" />
