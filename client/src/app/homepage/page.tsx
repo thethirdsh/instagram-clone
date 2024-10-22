@@ -35,7 +35,6 @@ const Homepage = () => {
         </div>
       </div>
     </div>
-    // w-[90%] md:w-[70%] lg:w-[84.5%]
   )
 }
 
