@@ -10,12 +10,9 @@ import { FaRegSquarePlus } from 'react-icons/fa6'
 import { CgProfile } from 'react-icons/cg'
 import { FaThreads } from 'react-icons/fa6'
 import { LuAlignJustify } from 'react-icons/lu'
-import { useRouter } from 'next/navigation'
 import { FaInstagram } from 'react-icons/fa'
 import Link from 'next/link'
 const MessagesSidebar = () => {
-  const router = useRouter()
-
   return (
     <div className="flex flex-col pt-2 pb-2 pr-1.5 pl-2 justify-between w-full h-screen">
       <div className="flex flex-col justify-center items-center">
