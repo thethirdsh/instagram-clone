@@ -16,6 +16,9 @@ const config: Config = {
         dancingScript: ['var(--font-dancing-script)'],
         billabong: ['var(--font-billabong)'],
       },
+      boxShadow: {
+        '3xl': '10px 0 30px -5px rgba(0, 0, 0, 0.5), -10px 0 30px -5px rgba(0, 0, 0, 0.5)',
+      }
     },
   },
   plugins: [],
