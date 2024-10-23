@@ -1,3 +1,4 @@
+import Bar from '@/components/bar'
 import Sidebar from '@/components/sidebar'
 import Image from 'next/image'
 import { BiSolidMoviePlay } from 'react-icons/bi'
@@ -20,7 +21,7 @@ const Explore = () => {
                 src="/images/post.jpg"
                 fill={true}
                 alt="Picture of the author"
-                className=''
+                className=""
               />
             </div>
             <div className="relative w-full h-[50%] hover:opacity-75">
@@ -180,6 +181,7 @@ const Explore = () => {
           </div>
         </div>
       </div>
+      <Bar />
     </>
   )
 }
