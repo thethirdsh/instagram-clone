@@ -2,6 +2,7 @@ import MessagesSidebar from '@/components/messagesSidebar'
 import { BiEdit } from 'react-icons/bi'
 import Image from 'next/image'
 import { RiMessengerLine } from 'react-icons/ri'
+import Bar from '@/components/bar'
 
 const Messages = () => {
   return (
@@ -229,6 +230,7 @@ const Messages = () => {
           </button>
         </div>
       </div>
+      <Bar />
     </>
   )
 }

@@ -10,13 +10,10 @@ import { FaRegSquarePlus } from 'react-icons/fa6'
 import { CgProfile } from 'react-icons/cg'
 import { FaThreads } from 'react-icons/fa6'
 import { LuAlignJustify } from 'react-icons/lu'
-import { useRouter } from 'next/navigation'
 import { FaInstagram } from 'react-icons/fa'
 import Link from 'next/link'
 
 const Sidebar = () => {
-  const router = useRouter()
-
   return (
     <div className="flex flex-col pt-2 pb-2 pr-2 pl-2 justify-between w-full h-screen">
       <div className="flex flex-col justify-center items-center">
@@ -53,10 +50,7 @@ const Sidebar = () => {
             </p>
           </Link>
           <Link
-            href="reels"
-            onClick={() => {
-              router.push('/reels')
-            }}
+            href="/reels"
             className="pl-3 pt-2 pb-2 mb-1 mt-1 flex flex-row items-center rounded-lg hover:bg-gray-200"
           >
             <BiMoviePlay className="text-3xl" />

@@ -1,5 +1,6 @@
 'use client'
 
+import Bar from '@/components/bar'
 import Feed from '@/components/feed'
 import RightSidebar from '@/components/rightSidebar'
 import Sidebar from '@/components/sidebar'
@@ -19,22 +20,25 @@ const Homepage = () => {
   }, [])
 
   return (
-    <div className="flex flex-row w-full h-full">
-      <div className="hidden md:flex flex-row fixed h-full lg:w-[14.5%]">
-        <Sidebar />
-        <div className="border-l border-gray-200 h-screen"></div>
-      </div>
-
+    <>
       <div className="flex flex-row w-full h-full">
-        <div className="flex flex-row justify-center pl-6 md:pl-44 w-full h-full">
-          <div className="w-[90%] md:w-[70%] lg:w-[48%] h-full">
-            <Feed />
-          </div>
+        <div className="hidden md:flex flex-row fixed h-full lg:w-[14.5%]">
+          <Sidebar />
+          <div className="border-l border-gray-200 h-screen"></div>
+        </div>
 
-          <div className="pl-6">{windowWidth >= 860 && <RightSidebar />}</div>
+        <div className="flex flex-row w-full h-full">
+          <div className="flex flex-row justify-center pl-6 md:pl-44 w-full h-full">
+            <div className="w-[90%] md:w-[70%] lg:w-[48%] h-full">
+              <Feed />
+            </div>
+
+            <div className="pl-6">{windowWidth >= 860 && <RightSidebar />}</div>
+          </div>
         </div>
       </div>
-    </div>
+      <Bar />
+    </>
   )
 }
 
