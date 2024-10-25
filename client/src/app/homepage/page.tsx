@@ -37,7 +37,9 @@ const Homepage = () => {
           </div>
         </div>
       </div>
-      <Bar />
+      <div className="pt-20 md:pt-0 sticky md:relative z-50">
+        <Bar />
+      </div>
     </>
   )
 }
