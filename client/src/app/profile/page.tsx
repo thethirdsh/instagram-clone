@@ -280,7 +280,7 @@ const Profile = () => {
         <div className="hidden md:flex justify-center items-center lg:ml-48 pt-20 pb-12">
           <Footer />
         </div>
-        <div className="pt-20 sticky md:relative z-50">
+        <div className="pt-20 md:pt-0 sticky md:relative z-50">
           <Bar />
         </div>
       </div>
