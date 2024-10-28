@@ -21,7 +21,7 @@ const Homepage = () => {
 
   return (
     <>
-      <div className="flex flex-row w-full h-full">
+      <div className="flex flex-row bg-white w-full h-full">
         <div className="hidden md:flex flex-row fixed h-full lg:w-[14.5%]">
           <Sidebar />
           <div className="border-l border-gray-200 h-screen"></div>

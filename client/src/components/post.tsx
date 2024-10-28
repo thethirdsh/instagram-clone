@@ -10,7 +10,7 @@ import { useState } from 'react'
 const Post = () => {
   const [isLiked, setIsLiked] = useState(false)
   return (
-    <div className="flex flex-col w-full h-full justify-between gap-2.5">
+    <div className="flex flex-col bg-white text-black w-full h-full justify-between gap-2.5">
       <div className="flex flex-row items-center justify-between gap-3">
         <div className="flex flex-row items-center justify-between gap-3">
           <div className="w-10 h-10 rounded-full bg-gradient-to-tr from-pink-500 to-yellow-500 flex items-center justify-center p-[2px]">

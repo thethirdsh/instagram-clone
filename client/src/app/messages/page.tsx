@@ -11,7 +11,7 @@ const Messages = () => {
         <MessagesSidebar />
         <div className="border-l border-gray-200 h-screen"></div>
       </div>
-      <div className="flex flex-row justify-center h-screen">
+      <div className="flex flex-row justify-center bg-white text-black h-screen">
         <div className="flex flex-col md:w-[13%] lg:w-[23%]">
           <div className="flex flex-row justify-center lg:justify-between pt-9 pr-7 pl-6">
             <button className="hidden lg:flex flex-row">

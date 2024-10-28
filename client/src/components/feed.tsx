@@ -3,7 +3,7 @@ import Story from './story'
 
 const Feed = () => {
   return (
-    <div className="flex flex-col justify-center items-center py-6 gap-6 w-full h-full">
+    <div className="flex flex-col justify-center items-center bg-white py-6 gap-6 w-full h-full">
       <div className="flex flex-row overflow-x-auto gap-4 w-[341px] md:w-[87%]">
         <Story />
 

@@ -5,7 +5,7 @@ import Sidebar from '@/components/sidebar'
 const Reels = () => {
   return (
     <>
-      <div className="flex flex-row w-screen h-screen">
+      <div className="flex flex-row bg-white w-screen h-screen">
         <div className="hidden md:flex flex-row fixed lg:w-[14.5%] h-full">
           <Sidebar />
           <div className="border-l border-gray-200 h-screen"></div>

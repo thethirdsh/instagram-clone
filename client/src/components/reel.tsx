@@ -17,7 +17,7 @@ const Reel = () => {
   const [isLiked, setIsLiked] = useState(false)
   const [isMuted, setIsMuted] = useState(false)
   return (
-    <div className="flex flex-row w-[350px] md:w-[550px] h-[600px] lg:h-[846.3px]">
+    <div className="flex flex-row bg-white text-black w-[350px] md:w-[550px] h-[600px] lg:h-[846.3px]">
       <div className="flex justify-center items-center rounded-md shadow-lg shadow-neutral-400 w-[80.5%] md:w-[65.5%] lg:w-[86.5%]">
         <div className="relative w-full h-full rounded bg-black">
           <div className="absolute top-3 right-9 z-20">

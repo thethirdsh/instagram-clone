@@ -8,7 +8,7 @@ import Link from 'next/link'
 
 const Bar = () => {
   return (
-    <div className="md:hidden flex flex-row justify-between items-center border-t-[1px] fixed bottom-0 left-0 right-0 w-full h-[50px] bg-white p-4 z-50">
+    <div className="bg-white text-black md:hidden flex flex-row justify-between items-center border-t-[1px] fixed bottom-0 left-0 right-0 w-full h-[50px] bg-white p-4 z-50">
       <Link
         href="/homepage"
         className="flex items-center rounded-lg hover:bg-gray-200"

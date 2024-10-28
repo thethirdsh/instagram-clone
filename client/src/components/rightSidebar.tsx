@@ -2,7 +2,7 @@ import Image from "next/image"
 
 const RightSidebar = () => {
   return (
-    <div className="flex flex-col mt-10 gap-7 w-full h-full">
+    <div className="flex flex-col bg-white mt-10 gap-7 w-full h-full">
       <div className="flex flex-row justify-between w-72">
         <div className="flex flex-row gap-3.5">
           <div className="w-11 h-11 rounded-full bg-gradient-to-tr from-pink-500 to-yellow-500 flex justify-center items-center p-[2px]">
@@ -16,7 +16,7 @@ const RightSidebar = () => {
             </button>
           </div>
           <div className="flex flex-col justify-center">
-            <p className="text-sm font-bold">Username</p>
+            <p className="text-sm font-bold text-black">Username</p>
             <p className="text-sm text-gray-500">Full Name</p>
           </div>
         </div>
@@ -30,7 +30,7 @@ const RightSidebar = () => {
           <p className="text-sm text-gray-500 font-semibold">
             Suggested for you
           </p>
-          <p className="text-xs font-semibold">See All</p>
+          <p className="text-xs font-semibold text-black">See All</p>
         </div>
         <div className="flex flex-row justify-between w-72">
           <div className="flex flex-row gap-3.5">
@@ -44,7 +44,7 @@ const RightSidebar = () => {
             </button>
 
             <div className="flex flex-col">
-              <p className="text-sm font-bold">Username</p>
+              <p className="text-sm font-bold text-black">Username</p>
               <p className="text-sm text-gray-500">Followed by user.name</p>
             </div>
           </div>
@@ -65,7 +65,7 @@ const RightSidebar = () => {
             </button>
 
             <div className="flex flex-col">
-              <p className="text-sm font-bold">Username</p>
+              <p className="text-sm font-bold text-black">Username</p>
               <p className="text-sm text-gray-500">Followed by user.name</p>
             </div>
           </div>
@@ -86,7 +86,7 @@ const RightSidebar = () => {
             </button>
 
             <div className="flex flex-col">
-              <p className="text-sm font-bold">Username</p>
+              <p className="text-sm font-bold text-black">Username</p>
               <p className="text-sm text-gray-500">Followed by user.name</p>
             </div>
           </div>
@@ -107,7 +107,7 @@ const RightSidebar = () => {
             </button>
 
             <div className="flex flex-col">
-              <p className="text-sm font-bold">Username</p>
+              <p className="text-sm font-bold text-black">Username</p>
               <p className="text-sm text-gray-500">Followed by user.name</p>
             </div>
           </div>
@@ -128,7 +128,7 @@ const RightSidebar = () => {
             </button>
 
             <div className="flex flex-col">
-              <p className="text-sm font-bold">Username</p>
+              <p className="text-sm font-bold text-black">Username</p>
               <p className="text-sm text-gray-500">Followed by user.name</p>
             </div>
           </div>

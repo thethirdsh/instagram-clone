@@ -10,7 +10,7 @@ const Explore = () => {
         <Sidebar />
         <div className="border-l border-gray-200 h-screen"></div>
       </div>
-      <div className="flex flex-col items-center overflow-y-auto lg:pt-12 pl-0.5 md:pl-6 lg:pl-12 w-full h-full gap-1 ">
+      <div className="flex flex-col items-center overflow-y-auto bg-white lg:pt-12 pl-0.5 md:pl-6 lg:pl-12 w-full h-full gap-1 ">
         <div className="flex flex-row w-[353px] md:w-[800px] lg:w-[963px] h-[313px] md:h-[638px] lg:ml-56 gap-1">
           <div className="flex flex-col w-1/3 h-full gap-1">
             <div className="relative w-full h-[50%] hover:opacity-75">
