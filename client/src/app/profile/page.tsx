@@ -17,7 +17,7 @@ const Profile = () => {
         <div className="border-l border-gray-200 h-screen"></div>
       </div>
 
-      <div className="flex flex-col justify-center items-center md:pl-0">
+      <div className="flex flex-col justify-center items-center bg-white text-black md:pl-0">
         <div className="flex flex-col justify-center items-center pt-6 lg:ml-48">
           <div className="flex flex-col justify-center items-center w-[80%] md:w-full h-full">
             <div className="flex flex-row mb-11 mr-8 md:pl-14 lg:pl-28 w-[80%] md:w-[54rem]">
@@ -101,7 +101,7 @@ const Profile = () => {
               </div>
             </div>
             <div className="flex flex-row overflow-x-auto mb-14 md:pl-10 gap-3 md:gap-14 w-[90%] md:w-[90%] lg:w-full">
-              <div className="flex flex-col space-y-2">
+              <div className="flex flex-col items-center space-y-2">
                 <div className="w-16 h-16 md:w-20 md:h-20 rounded-full border-2 border-gray-200 flex items-center justify-center p-[0.5px]">
                   <button className="relative rounded-full bg-white flex items-center justify-center w-[94%] h-[94%]">
                     <Image

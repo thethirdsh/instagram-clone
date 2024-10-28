@@ -14,7 +14,7 @@ import { FaInstagram } from 'react-icons/fa'
 import Link from 'next/link'
 const MessagesSidebar = () => {
   return (
-    <div className="flex flex-col pt-2 pb-2 pr-1.5 pl-2 justify-between w-full h-screen">
+    <div className="flex flex-col bg-white text-black pt-2 pb-2 pr-1.5 pl-2 justify-between w-full h-screen">
       <div className="flex flex-col justify-center items-center">
         <Link href="/homepage" className="flex items-center rounded-lg pl-4 pr-3 pt-6 pb-4 mb-5 font-dancingScript font-black w-full text-xl md:text-2xl lg:text-3xl hover:bg-gray-200">
           <FaInstagram className="" />
