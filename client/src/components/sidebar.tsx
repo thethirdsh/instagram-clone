@@ -22,7 +22,7 @@ const Sidebar = () => {
           className="pl-4 pr-3 pt-6 pb-4 mb-5 font-dancingScript font-black w-full text-xl md:text-2xl lg:text-3xl"
         >
           <FaInstagram className="lg:hidden text-black text-2xl" />
-          <p className="hidden text-black lg:flex">Instagram</p>
+          <p className="hidden text-black font-dancingScript lg:flex">Instagram</p>
         </Link>
         <div className="flex flex-col text-black w-full">
           <Link
