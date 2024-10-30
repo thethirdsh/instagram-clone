@@ -33,7 +33,7 @@ const Signup = () => {
               placeholder="Username"
               className="border-[1px] border-gray-300 rounded w-[80%] text-black text-xs font-light bg-[#FAFAFA] pl-2.5 mt-1.5 h-10 focus:outline-gray-500"
             />
-            <p className="text-center text-xs text-gray-500 text-light pt-4 w-[80%]">
+            <p className="text-center text-xs text-gray-500 font-light pt-4 w-[80%]">
               People who use our service may have uploaded your contact
               information to Instagram.{' '}
               <span className="text-[#003366] text-xs font-light">
@@ -41,16 +41,16 @@ const Signup = () => {
                 Learn More
               </span>
             </p>
-            <p className="text-center text-xs text-gray-500 text-light pt-4 w-[80%]">
+            <p className="text-center text-xs text-gray-500 font-light pt-4 w-[80%]">
               By signing up, you agree to our{' '}
-              <span className="text-[#003366] text-xs font-light"> Terms </span>{' '}
+              <span className="text-[#003366]"> Terms </span>{' '}
               ,{' '}
-              <span className="text-[#003366] text-xs font-light">
+              <span className="text-[#003366]">
                 {' '}
                 Privacy Policy
               </span>{' '}
               and{' '}
-              <span className="text-[#003366] text-xs font-light">
+              <span className="text-[#003366]">
                 {' '}
                 Cookies Policy{' '}
               </span>{' '}
