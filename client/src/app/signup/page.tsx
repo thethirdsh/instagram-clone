@@ -3,7 +3,7 @@ import Footer from '@/components/footer'
 const Signup = () => {
   return (
     <div className="flex flex-col w-full h-full">
-      <div className="flex flex-col justify-center items-center pt-10 lg:pt-24">
+      <div className="flex flex-col justify-center items-center pt-10 lg:pt-32">
         <div className="flex flex-col justify-center items-center border-[1px] border-gray-300 w-[350px] h-[510px]">
           <p className="text-5xl font-semibold text-black font-dancingScript pb-2">
             Instagram
@@ -71,7 +71,7 @@ const Signup = () => {
           </p>
         </div>
       </div>
-      <div className="hidden lg:flex pt-36">
+      <div className="hidden lg:flex mt-28">
         <Footer />
       </div>
     </div>
