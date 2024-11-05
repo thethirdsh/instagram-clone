@@ -2,7 +2,7 @@ import Footer from '@/components/footer'
 
 const ResetPassword = () => {
   return (
-    <div className="flex flex-col justify-center items-center w-full h-full">
+    <div className="flex flex-col justify-center items-center bg-white w-full h-full">
       <div className="flex flex-col items-center rounded border-[1px] border-gray-300 mt-32 md:mt-64 w-[345px] h-[375px]">
         <p className="font-semibold text-center text-xl pt-9">
           Change your password

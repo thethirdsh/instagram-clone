@@ -4,7 +4,7 @@ import Link from 'next/link'
 
 const ForgotPassword = () => {
   return (
-    <div className="flex flex-col justify-center items-center w-full h-full">
+    <div className="flex flex-col justify-center items-center bg-white w-full h-full">
       <div className="flex flex-col items-center rounded-sm border-[1px] border-gray-300 mt-16 md:mt-36 w-[345px] md:w-[388px] h-[534px]">
         <div className="flex justify-center items-center rounded-full border-2 border-black mt-6 w-[101px] h-[130px] md:h-[101px]">
           <div className="w-14 h-14">
