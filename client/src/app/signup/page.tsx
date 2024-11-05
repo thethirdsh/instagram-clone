@@ -1,4 +1,5 @@
 import Footer from '@/components/footer'
+import Link from 'next/link'
 
 const Signup = () => {
   return (
@@ -43,18 +44,9 @@ const Signup = () => {
             </p>
             <p className="text-center text-xs text-gray-500 font-light pt-4 w-[80%]">
               By signing up, you agree to our{' '}
-              <span className="text-[#003366]"> Terms </span>{' '}
-              ,{' '}
-              <span className="text-[#003366]">
-                {' '}
-                Privacy Policy
-              </span>{' '}
-              and{' '}
-              <span className="text-[#003366]">
-                {' '}
-                Cookies Policy{' '}
-              </span>{' '}
-              .
+              <span className="text-[#003366]"> Terms </span> ,{' '}
+              <span className="text-[#003366]"> Privacy Policy</span> and{' '}
+              <span className="text-[#003366]"> Cookies Policy </span> .
             </p>
             <button
               type="submit"
@@ -67,7 +59,9 @@ const Signup = () => {
         <div className="flex justify-center items-center border-[1px] border-gray-300 text-sm mt-2.5 w-[350px] h-16">
           <p>
             Have an account?
-            <span className="font-semibold text-[#0099FF]"> Log in</span>
+            <Link href="/login">
+              <span className="font-semibold text-[#0099FF]"> Log in</span>
+            </Link>
           </p>
         </div>
       </div>
