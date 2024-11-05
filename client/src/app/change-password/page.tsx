@@ -3,7 +3,7 @@ import Footer from '@/components/footer'
 const ChangePassword = () => {
   return (
     <div className="flex flex-col justify-center items-center bg-white w-full h-full">
-      <div className="flex flex-col items-center rounded border-[1px] border-gray-300 mt-32 md:mt-64 w-[345px] h-[420px]">
+      <div className="flex flex-col items-center rounded border-[1px] border-gray-300 mt-32 md:mt-64 w-[345px] h-[435px]">
         <p className="font-semibold text-center text-xl pt-9">
           Change your Password
         </p>
@@ -33,7 +33,7 @@ const ChangePassword = () => {
           />
           <button
             type="submit"
-            className="flex justify-center items-center bg-[#0099FF] rounded-lg mt-9 w-[80%] mt-4 h-8"
+            className="flex justify-center items-center bg-[#0099FF] rounded-lg mt-11 w-[80%] mt-4 h-8"
           >
             <p className="text-white text-sm font-medium">Change password</p>
           </button>
