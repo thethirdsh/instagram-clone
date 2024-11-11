@@ -4,21 +4,8 @@ import Bar from '@/components/bar'
 import Feed from '@/components/feed'
 import RightSidebar from '@/components/rightSidebar'
 import Sidebar from '@/components/sidebar'
-import { useEffect, useState } from 'react'
 
 const Homepage = () => {
-  const [windowWidth, setWindowWidth] = useState(0) // Initialize with a default value
-
-  useEffect(() => {
-    const handleResize = () => setWindowWidth(window.innerWidth)
-
-    // Set initial width on mount
-    handleResize()
-
-    window.addEventListener('resize', handleResize)
-    return () => window.removeEventListener('resize', handleResize)
-  }, [])
-
   return (
     <>
       <div className="flex flex-row bg-white w-full h-full">
@@ -33,7 +20,7 @@ const Homepage = () => {
               <Feed />
             </div>
 
-            <div className="pl-6">{windowWidth >= 860 && <RightSidebar />}</div>
+            <div className="hidden lg:flex pl-6"><RightSidebar /></div>
           </div>
         </div>
       </div>
