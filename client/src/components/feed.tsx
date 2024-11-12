@@ -8,7 +8,7 @@ interface Author {
 
 interface Post {
   id: number
-  author: Author
+  user: Author
   caption: string
   // image: string; // Adjust according to your data structure
   total_likes: number
@@ -86,19 +86,23 @@ const Feed = () => {
 
         <Story />
       </div>
-      <div className="flex flex-col justify-center items-center gap-6 w-full h-full">
-        {posts.map((post) => (
-          <div className="w-[341px] md:w-[470px]" key={post.id}>
-            <Post
-              authorUsername={post.author.username} // Adjust based on your actual post structure
-              // postImage={post.image} // Ensure this matches your post data
-              caption={post.caption} // Adjust according to your post data
-              totalLikes={post.total_likes}
-              totalComments={post.total_comments} // Assuming comments is an array
-            />
-          </div>
-        ))}
-      </div>
+      {posts.length === 0 ? (
+        <p className="">There are no posts to load</p>
+      ) : (
+        <div className="flex flex-col justify-center items-center gap-6 w-full h-full">
+          {posts.map((post) => (
+            <div className="w-[341px] md:w-[470px]" key={post.id}>
+              <Post
+                authorUsername={post.user.username} // Adjust based on your actual post structure
+                // postImage={post.image} // Ensure this matches your post data
+                caption={post.caption} // Adjust according to your post data
+                totalLikes={post.total_likes}
+                totalComments={post.total_comments} // Assuming comments is an array
+              />
+            </div>
+          ))}
+        </div>
+      )}
     </div>
   )
 }
