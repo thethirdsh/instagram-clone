@@ -1,7 +1,52 @@
+'use client'
+
 import Footer from '@/components/footer'
 import Link from 'next/link'
+import { useState } from 'react'
+import { useRouter } from 'next/navigation'
 
 const Signup = () => {
+  const [name, setName] = useState('')
+  const [username, setUsername] = useState('')
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+  // const [error, setError] = useState('')
+  const [success, setSuccess] = useState(false)
+  // const [loading, setLoading] = useState(false)
+  const router = useRouter()
+
+
+  const handleSignup = async (e: React.FormEvent) => {
+    e.preventDefault()
+    // setError('')
+    setSuccess(false)
+    // setLoading(true)
+
+    try {
+      const response = await fetch('/api/authentication/signup', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name, username, email, password }),
+      })
+
+      const data = await response.json()
+
+      if (response.ok) {
+        setSuccess(true)
+        console.log('Signup successful:', data)
+        router.push('/homepage')
+      } else {
+        // setError(data.error || 'Signup failed')
+      }
+    } catch (err) {
+      console.error('Signup error:', err)
+      // setError('Something went wrong. Please try again.')
+    } finally {
+      // setLoading(false)
+    }
+  }
+
+
   return (
     <div className="flex flex-col bg-white w-full h-full">
       <div className="flex flex-col items-center py-16 lg:py-20">
@@ -14,25 +59,29 @@ const Signup = () => {
               {' '}
               Sign up to see photos and videos from your friends.
             </p>
-            <form className="flex flex-col justify-center items-center pt-2">
+            <form onSubmit={handleSignup} className="flex flex-col justify-center items-center pt-2">
               <input
                 type="text"
                 placeholder="Mobile Number or Email"
+                onChange={(e) => setEmail(e.target.value)}
                 className="border-[1px] border-gray-300 rounded w-[80%] text-black text-xs font-light bg-[#FAFAFA] pl-2.5 h-10 focus:outline-gray-500"
               />
               <input
                 type="password"
                 placeholder="Password"
+                onChange={(e) => setPassword(e.target.value)}
                 className="border-[1px] border-gray-300 rounded w-[80%] text-black text-xs font-light bg-[#FAFAFA] pl-2.5 mt-1.5 h-10 focus:outline-gray-500"
               />
               <input
                 type="text"
                 placeholder="Full Name"
+                onChange={(e) => setName(e.target.value)}
                 className="border-[1px] border-gray-300 rounded w-[80%] text-black text-xs font-light bg-[#FAFAFA] pl-2.5 mt-1.5 h-10 focus:outline-gray-500"
               />
               <input
                 type="text"
                 placeholder="Username"
+                onChange={(e) => setUsername(e.target.value)}
                 className="border-[1px] border-gray-300 rounded w-[80%] text-black text-xs font-light bg-[#FAFAFA] pl-2.5 mt-1.5 h-10 focus:outline-gray-500"
               />
               <p className="text-center text-xs text-gray-500 font-light pt-4 w-[80%]">

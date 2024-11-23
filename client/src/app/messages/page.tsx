@@ -1,3 +1,5 @@
+'use client'
+
 import MessagesSidebar from '@/components/messagesSidebar'
 import { BiEdit } from 'react-icons/bi'
 import Image from 'next/image'

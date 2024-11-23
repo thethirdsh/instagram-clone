@@ -4,8 +4,63 @@ import Bar from '@/components/bar'
 import Feed from '@/components/feed'
 import RightSidebar from '@/components/rightSidebar'
 import Sidebar from '@/components/sidebar'
+import { useDispatch, useSelector } from 'react-redux'
+import { setUser } from '@/store/userSlice'
+import { useEffect, useState } from 'react'
+import { JwtPayload } from 'jsonwebtoken'
+import jwt from 'jsonwebtoken'
 
 const Homepage = () => {
+  const dispatch = useDispatch()
+
+  const [loading, setLoading] = useState<boolean>(true)
+
+  useEffect(() => {
+    // Check if the access token exists in the cookies
+    const fetchToken = async () => {
+      const response = await fetch('/api/authentication/token', {
+        credentials: 'include', // Ensures cookies are sent with the request
+      })
+
+      if (response.ok) {
+        const data = await response.json()
+        const accessToken = data.accessToken
+        setLoading(false)
+        console.log('Access Token:', data.accessToken)
+        // You can store this in Redux or state
+
+        if (accessToken) {
+          try {
+            const decoded = jwt.decode(accessToken.value) as JwtPayload
+
+            console.log('Decoded:', decoded)
+
+            if (decoded) {
+              // Assuming the token contains user information like `id`, `username`, etc.
+              dispatch(
+                setUser({
+                  userId: decoded.id,
+                })
+              )
+            }
+          } catch (error) {
+            console.error('Failed to retrieve token: ', error)
+          }
+        } else {
+          console.error('Failed to retrieve token')
+        }
+      } else {
+        console.error('Failed to retrieve token')
+      }
+    }
+
+    fetchToken()
+  }, [dispatch])
+
+  if (loading) {
+    return <></>
+  }
+
   return (
     <>
       <div className="flex flex-row bg-white w-full h-full">
@@ -20,7 +75,9 @@ const Homepage = () => {
               <Feed />
             </div>
 
-            <div className="hidden lg:flex pl-6"><RightSidebar /></div>
+            <div className="hidden lg:flex pl-6">
+              <RightSidebar />
+            </div>
           </div>
         </div>
       </div>

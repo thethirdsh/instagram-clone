@@ -1,3 +1,5 @@
+'use client'
+
 import Image from 'next/image'
 import { BsThreeDots } from 'react-icons/bs'
 import { FaRegHeart, FaHeart, FaRegBookmark } from 'react-icons/fa'

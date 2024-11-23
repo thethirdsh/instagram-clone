@@ -1,3 +1,5 @@
+'use client'
+
 import Bar from '@/components/bar'
 import Sidebar from '@/components/sidebar'
 import Image from 'next/image'
