@@ -1,3 +1,5 @@
+'use client'
+
 import { PiHouseBold } from 'react-icons/pi'
 import { FaRegCompass } from 'react-icons/fa'
 import { BiMoviePlay } from 'react-icons/bi'

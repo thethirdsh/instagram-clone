@@ -1,3 +1,5 @@
+'use client'
+
 import Bar from '@/components/bar'
 import Reel from '@/components/reel'
 import Sidebar from '@/components/sidebar'

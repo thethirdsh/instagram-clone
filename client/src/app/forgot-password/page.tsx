@@ -1,3 +1,5 @@
+'use client'
+
 import Footer from '@/components/footer'
 import Lock from './../../../icons/lock.svg'
 import Link from 'next/link'
