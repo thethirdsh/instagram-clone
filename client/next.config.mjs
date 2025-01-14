@@ -1,7 +1,16 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
-    domains: ['st1.latestly.com'], // Allow images from this domain
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'st1.latestly.com',
+      },
+      {
+        protocol: 'https',
+        hostname: 'res.cloudinary.com',
+      },
+    ],
   },
   webpack(config) {
     config.module.rules.push({

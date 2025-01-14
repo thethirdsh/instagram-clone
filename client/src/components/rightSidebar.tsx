@@ -34,6 +34,7 @@ const RightSidebar = () => {
         setUser(data)
         setLoading(false)
       } catch (err: unknown) {
+        setLoading(false)
         console.error('Error fetching user data:', err)
       }
     }
@@ -42,9 +43,7 @@ const RightSidebar = () => {
   }, [userId])
 
   if (loading) {
-    return (
-      <></>
-    )
+    return <></>
   }
 
   return (

@@ -11,13 +11,19 @@ import { useState } from 'react'
 interface PostProps {
   // authorImage: string
   authorUsername: string
-  // postImage: string
+  imageUrl: string
   caption: string
   totalLikes: number
-  totalComments: number//Array<{ id: number; text: string }> // Adjust as necessary for your comment structure
+  totalComments: number //Array<{ id: number; text: string }> // Adjust as necessary for your comment structure
 }
 
-const Post: React.FC<PostProps> = ({ /*authorImage,*/ authorUsername, /*postImage,*/ caption, totalLikes, totalComments }) => {
+const Post: React.FC<PostProps> = ({
+  /*authorImage,*/ authorUsername,
+  imageUrl,
+  caption,
+  totalLikes,
+  totalComments,
+}) => {
   const [isLiked, setIsLiked] = useState(false)
 
   return (
@@ -44,8 +50,9 @@ const Post: React.FC<PostProps> = ({ /*authorImage,*/ authorUsername, /*postImag
       </div>
       <div className="relative h-[600px]">
         <Image
-          src={'/images/post.jpg'}
+          src={imageUrl}
           fill={true}
+          objectFit="contain"
           alt="Picture of the post"
         />
       </div>

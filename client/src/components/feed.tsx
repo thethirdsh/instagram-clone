@@ -3,6 +3,8 @@
 import { useEffect, useState } from 'react'
 import Post from './post'
 import Story from './story'
+import { useSelector } from 'react-redux'
+import { RootState } from '@/store/store'
 
 interface Author {
   username: string
@@ -12,17 +14,20 @@ interface Post {
   id: number
   user: Author
   caption: string
-  // image: string; // Adjust according to your data structure
+  imageUrl: string // Adjust according to your data structure
   total_likes: number
   total_comments: number // Assuming comments are an array
 }
 
 const Feed = () => {
   const [posts, setPosts] = useState<Post[]>([])
+  const userId = useSelector((state: RootState) => state.user.userId)
 
   const fetchPosts = async () => {
     try {
-      const response = await fetch('/api/posts') // Adjust the endpoint as needed
+      const response = await fetch(`/api/posts?id=${userId}`, {
+        credentials: 'include',
+      }) // Adjust the endpoint as needed
       if (!response.ok) {
         throw new Error('Failed to fetch posts')
       }
@@ -96,7 +101,7 @@ const Feed = () => {
             <div className="w-[341px] md:w-[470px]" key={post.id}>
               <Post
                 authorUsername={post.user.username} // Adjust based on your actual post structure
-                // postImage={post.image} // Ensure this matches your post data
+                imageUrl={post.imageUrl} // Ensure this matches your post data
                 caption={post.caption} // Adjust according to your post data
                 totalLikes={post.total_likes}
                 totalComments={post.total_comments} // Assuming comments is an array
