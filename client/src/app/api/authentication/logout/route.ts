@@ -1,6 +1,6 @@
-import { NextRequest, NextResponse } from 'next/server'
+import { NextResponse } from 'next/server'
 
-export async function POST(reqeust: NextRequest) {
+export async function POST() {
   try {
     const accessTokenCookieDomain = process.env.ACCESS_TOKEN_COOKIE ?? ''
 

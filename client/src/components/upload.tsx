@@ -56,6 +56,7 @@ export default function Upload() {
       const data = await res.json()
       if (res.ok) {
         setUploadUrl(data.url)
+        console.log(uploadUrl)
         await savePostToDatabase(data.url, 'caption')
       } else {
         console.error(data.error)
