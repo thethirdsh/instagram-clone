@@ -15,11 +15,11 @@ const Signup = () => {
   // const [loading, setLoading] = useState(false)
   const router = useRouter()
 
-
   const handleSignup = async (e: React.FormEvent) => {
     e.preventDefault()
     // setError('')
     setSuccess(false)
+    console.log(success)
     // setLoading(true)
 
     try {
@@ -46,7 +46,6 @@ const Signup = () => {
     }
   }
 
-
   return (
     <div className="flex flex-col bg-white w-full h-full">
       <div className="flex flex-col items-center py-16 lg:py-20">
@@ -59,7 +58,10 @@ const Signup = () => {
               {' '}
               Sign up to see photos and videos from your friends.
             </p>
-            <form onSubmit={handleSignup} className="flex flex-col justify-center items-center pt-2">
+            <form
+              onSubmit={handleSignup}
+              className="flex flex-col justify-center items-center pt-2"
+            >
               <input
                 type="text"
                 placeholder="Mobile Number or Email"
