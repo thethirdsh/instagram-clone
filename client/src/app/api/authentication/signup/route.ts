@@ -1,14 +1,20 @@
 import { NextRequest, NextResponse } from 'next/server'
 import bcrypt from 'bcryptjs'
 import jwt from 'jsonwebtoken'
-import { PrismaClient } from '@prisma/client'  // Ensure you're importing the Prisma client
+import { PrismaClient } from '@prisma/client' // Ensure you're importing the Prisma client
 
-const prisma = new PrismaClient()  // Initialize the Prisma client
+const prisma = new PrismaClient() // Initialize the Prisma client
 
 export async function POST(req: NextRequest) {
   try {
     // Parse the request body
-    const { name, username, email, password }: { name: string; username: string; email: string; password: string } = await req.json()
+    const {
+      name,
+      username,
+      email,
+      password,
+    }: { name: string; username: string; email: string; password: string } =
+      await req.json()
 
     // Validate input
     if (!name || !username || !email || !password) {
@@ -22,10 +28,10 @@ export async function POST(req: NextRequest) {
     const existingUser = await prisma.user.findFirst({
       where: {
         OR: [
-          { username },  // Check if username already exists
-          { email }      // Check if email already exists
-        ]
-      }
+          { username }, // Check if username already exists
+          { email }, // Check if email already exists
+        ],
+      },
     })
 
     if (existingUser) {
@@ -43,7 +49,7 @@ export async function POST(req: NextRequest) {
       data: {
         name,
         username,
-        email,         // Include email in the user creation
+        email, // Include email in the user creation
         password: hashedPassword,
       },
     })
@@ -55,10 +61,10 @@ export async function POST(req: NextRequest) {
 
     // Set the token as a cookie
     const cookieOptions = {
-      maxAge: 7 * 24 * 60 * 60 * 1000,  // 7 days
+      maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days
       httpOnly: true,
-      secure: process.env.NODE_ENV === 'production',  // Only use secure cookies in production
-      path: '/',  // Cookie will be available across the site
+      secure: process.env.NODE_ENV === 'production', // Only use secure cookies in production
+      path: '/', // Cookie will be available across the site
     }
 
     const response = NextResponse.json(
