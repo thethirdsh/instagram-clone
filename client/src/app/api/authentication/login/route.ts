@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import bcrypt from 'bcryptjs'
 import jwt from 'jsonwebtoken'
-import { PrismaClient } from '@prisma/client' 
+import { PrismaClient } from '@prisma/client'
 
 const prisma = new PrismaClient()
 
@@ -62,6 +62,7 @@ export async function POST(req: NextRequest) {
 
     // Set the cookie in response headers
     response.cookies.set('accessToken', token, cookieOptions)
+    response.cookies.set('_vercel_jwt', token, cookieOptions)
 
     return response
   } catch (error) {
