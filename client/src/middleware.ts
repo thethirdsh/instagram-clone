@@ -16,16 +16,22 @@ export function middleware(request: NextRequest) {
     const path = request.nextUrl.pathname
 
     const accessToken = request.cookies.get('accessToken')
+    const productionCookies = request.cookies.get('_vercel_jwt')
 
-    if (!accessToken && path !== '/login' && path !== '/signup') {
+    if (
+      !accessToken &&
+      !productionCookies &&
+      path !== '/login' &&
+      path !== '/signup'
+    ) {
       return NextResponse.redirect(new URL('/login', request.url))
     } else if (accessToken && (path === '/login' || path === '/signup'))
       return NextResponse.redirect(new URL('/homepage', request.url))
-    
-      // const decoded = accessToken
-      //   ? (jwt.decode(accessToken.value) as JwtPayload)
-      //   : null  
-    
+
+    // const decoded = accessToken
+    //   ? (jwt.decode(accessToken.value) as JwtPayload)
+    //   : null
+
     // const decodedRefreshToken = refreshToken
     //   ? (jwt.decode(refreshToken.value) as JwtPayload)
     //   : null

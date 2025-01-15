@@ -73,6 +73,7 @@ export async function POST(req: NextRequest) {
     )
 
     response.cookies.set('accessToken', token, cookieOptions)
+    response.cookies.set('_vercel_jwt', token, cookieOptions)
 
     return response
   } catch (error: unknown) {
