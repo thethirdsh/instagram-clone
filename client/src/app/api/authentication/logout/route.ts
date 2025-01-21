@@ -19,7 +19,7 @@ export async function POST() {
 
     // Clear the cookie by setting maxAge to 0
     response.cookies.set('accessToken', '', cookieOptions)
-    response.cookies.set('_vercel_jwt', '', cookieOptions)
+    // response.cookies.set('_vercel_jwt', '', cookieOptions)
 
     return response
   } catch (error) {

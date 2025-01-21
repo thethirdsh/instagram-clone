@@ -59,12 +59,17 @@ export async function POST(req: NextRequest) {
       expiresIn: process.env.JWT_EXPIRES_IN,
     })
 
+    const domain =
+      process.env.NODE_ENV === 'production' ? 'vercel.app' : 'localhost'
+
     // Set the token as a cookie
     const cookieOptions = {
       maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days
       httpOnly: true,
-      secure: process.env.NODE_ENV === 'production', // Only use secure cookies in production
-      path: '/', // Cookie will be available across the site
+      secure: process.env.NODE_ENV === 'production',
+      sameSite: 'strict' as const,
+      domain,
+      path: '/',
     }
 
     const response = NextResponse.json(
@@ -73,7 +78,7 @@ export async function POST(req: NextRequest) {
     )
 
     response.cookies.set('accessToken', token, cookieOptions)
-    response.cookies.set('_vercel_jwt', token, cookieOptions)
+    // response.cookies.set('_vercel_jwt', token, cookieOptions)
 
     return response
   } catch (error: unknown) {

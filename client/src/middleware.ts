@@ -16,11 +16,11 @@ export function middleware(request: NextRequest) {
     const path = request.nextUrl.pathname
 
     const accessToken = request.cookies.get('accessToken')
-    const productionCookies = request.cookies.get('_vercel_jwt')
+    // const productionCookies = request.cookies.get('_vercel_jwt')
 
     if (
       !accessToken &&
-      !productionCookies &&
+      // !productionCookies &&
       path !== '/login' &&
       path !== '/signup'
     ) {
