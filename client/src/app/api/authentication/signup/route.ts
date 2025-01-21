@@ -60,7 +60,7 @@ export async function POST(req: NextRequest) {
     })
 
     const domain =
-      process.env.NODE_ENV === 'production' ? 'vercel.app' : 'localhost'
+      process.env.NODE_ENV === 'production' ? '.instagram-clone-jade-five.vercel.app' : 'localhost'
 
     // Set the token as a cookie
     const cookieOptions = {

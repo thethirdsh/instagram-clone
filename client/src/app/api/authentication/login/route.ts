@@ -48,8 +48,8 @@ export async function POST(req: NextRequest) {
 
     const domain =
       process.env.NODE_ENV === 'production'
-        ? 'vercel.app' 
-        : 'localhost' 
+        ? '.instagram-clone-jade-five.vercel.app'
+        : 'localhost'
 
     // Set the JWT token as a HttpOnly cookie
     const cookieOptions = {
