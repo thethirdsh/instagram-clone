@@ -7,7 +7,6 @@ const prisma = new PrismaClient()
 
 export async function POST(req: NextRequest) {
   try {
-    const accessTokenCookieDomain = process.env.ACCESS_TOKEN_COOKIE ?? ''
     const { username, password } = await req.json()
 
     // Check if required fields are provided
@@ -47,12 +46,19 @@ export async function POST(req: NextRequest) {
       expiresIn: process.env.JWT_EXPIRES_IN,
     })
 
+    const domain =
+      process.env.NODE_ENV === 'production'
+        ? 'vercel.app' 
+        : 'localhost' 
+
     // Set the JWT token as a HttpOnly cookie
     const cookieOptions = {
       maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days
       httpOnly: true,
       secure: process.env.NODE_ENV === 'production',
-      domain: accessTokenCookieDomain || '.localhost', // Customize for your domain
+      sameSite: 'strict' as const,
+      domain,
+      path: '/',
     }
 
     const response = NextResponse.json(
@@ -62,7 +68,7 @@ export async function POST(req: NextRequest) {
 
     // Set the cookie in response headers
     response.cookies.set('accessToken', token, cookieOptions)
-    response.cookies.set('_vercel_jwt', token, cookieOptions)
+    // response.cookies.set('_vercel_jwt', token, cookieOptions)
 
     return response
   } catch (error) {
