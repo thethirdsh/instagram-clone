@@ -1,23 +1,27 @@
 import { NextRequest, NextResponse } from 'next/server'
+import jwt from 'jsonwebtoken'
 
 export async function GET(req: NextRequest) {
   try {
     // Retrieve cookies from the request
     const cookies = req.cookies.get('accessToken')
-    const productionCookies = req.cookies.get('_vercel_jwt')
+    const secret = process.env.NEXT_PUBLIC_JWT_SECRET!
 
-    if (!cookies && !productionCookies) {
-      return NextResponse.json(
-        { error: 'Access token not found' },
-        { status: 401 }
-      )
+    if (cookies) {
+      const decoded = jwt.verify(cookies.value, secret) as {
+        id: string
+        username: string
+      }
+      console.log('Decoded:', decoded)
+      return NextResponse.json( decoded, { status: 200 })
     }
 
-    // Return the accessToken
     return NextResponse.json(
-      { accessToken: cookies, _vercel_jwt: productionCookies },
-      { status: 200 }
+      { error: 'No cookies/tokens were found' },
+      { status: 400 }
     )
+
+    // Return the accessToken
   } catch (error) {
     console.error(error)
     return NextResponse.json(

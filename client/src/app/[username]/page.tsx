@@ -8,15 +8,46 @@ import { BiMoviePlay } from 'react-icons/bi'
 import { LiaUserTagSolid } from 'react-icons/lia'
 import Footer from '@/components/footer'
 import Bar from '@/components/bar'
+import { useEffect, useState } from 'react'
 
-const Profile = () => {
+interface Props {
+  params: { username: string }
+}
+
+const Profile: React.FC<Props> = ({ params }) => {
+  const { username } = params
+
+  interface User {
+    profileImage: string
+    username: string
+    name: string
+    posts: Post[]
+  }
+
+  interface Post {
+    imageUrl: string
+  }
+
+  const [user, setUser] = useState<User | null>(null)
+
+  useEffect(() => {
+    const fetchUser = async () => {
+      const response = await fetch(`/api/users?username=${username}`, {
+        credentials: 'include',
+      })
+      const data = await response.json()
+      setUser(data)
+    }
+
+    fetchUser()
+  }, [username])
+
   return (
     <>
       <div className="hidden lg:flex flex-row fixed h-full lg:w-[14.5%]">
         <Sidebar />
         <div className="border-l border-gray-200 h-screen"></div>
       </div>
-
       <div className="flex flex-col justify-center items-center bg-white text-black md:pl-0">
         <div className="flex flex-col justify-center items-center pt-6 lg:ml-48">
           <div className="flex flex-col justify-center items-center w-[80%] md:w-full h-full">
@@ -26,7 +57,7 @@ const Profile = () => {
                   <button className="relative md:w-[98%] md:h-[98%] rounded-full bg-white flex items-center justify-center">
                     <Image
                       className="rounded-full border-4 border-white"
-                      src="/images/profile.png"
+                      src={user?.profileImage || '/images/profile.png'}
                       fill={true}
                       alt="Picture of the author"
                     />
@@ -41,14 +72,16 @@ const Profile = () => {
                         <button className="relative w-[98%] h-[98%] rounded-full bg-white flex items-center justify-center">
                           <Image
                             className="rounded-full border-4 border-white"
-                            src="/images/profile.png"
+                            src={user?.profileImage || '/images/profile.png'}
                             fill={true}
                             alt="Picture of the author"
                           />
                         </button>
                       </div>
                     </div>
-                    <p className="text-xl pl-4 md:pl-0 md:mr-5">username</p>
+                    <p className="text-xl pl-4 md:pl-0 md:mr-5">
+                      {user?.username}
+                    </p>
                   </div>
 
                   <div className="flex flex-row gap-5 md:gap-2 pt-6 md:pt-0">
@@ -88,7 +121,7 @@ const Profile = () => {
                   </p>
                 </div>
                 <div className="flex flex-col">
-                  <p className="font-semibold">Full Name</p>
+                  <p className="font-semibold">{user?.name}</p>
                   <p className="text-gray-500">Public figure</p>
                   <p className="text-balance text-xs md:text-base w-[60%] md:w-[70%] lg:w-full lg:text-base">
                     A little description written by the account owner or a big
@@ -212,69 +245,19 @@ const Profile = () => {
             </div>
           </div>
           <div className="grid grid-cols-3 gap-1 w-[295px] md:w-[97.3%] lg:w-[97.5%]">
-            <button className="relative size-24 md:size-72 hover:opacity-75">
-              <Image
-                src="/images/post.jpg"
-                fill={true}
-                alt="Picture of the author"
-              />
-            </button>
-            <button className="relative size-24 md:size-72 hover:opacity-75">
-              <Image
-                src="/images/post.jpg"
-                fill={true}
-                alt="Picture of the author"
-              />
-            </button>
-            <button className="relative size-24 md:size-72 hover:opacity-75">
-              <Image
-                src="/images/post.jpg"
-                fill={true}
-                alt="Picture of the author"
-              />
-            </button>
-            <button className="relative size-24 md:size-72 hover:opacity-75">
-              <Image
-                src="/images/post.jpg"
-                fill={true}
-                alt="Picture of the author"
-              />
-            </button>
-            <button className="relative size-24 md:size-72 hover:opacity-75">
-              <Image
-                src="/images/post.jpg"
-                fill={true}
-                alt="Picture of the author"
-              />
-            </button>
-            <button className="relative size-24 md:size-72 hover:opacity-75">
-              <Image
-                src="/images/post.jpg"
-                fill={true}
-                alt="Picture of the author"
-              />
-            </button>
-            <button className="relative size-24 md:size-72 hover:opacity-75">
-              <Image
-                src="/images/post.jpg"
-                fill={true}
-                alt="Picture of the author"
-              />
-            </button>
-            <button className="relative size-24 md:size-72 hover:opacity-75">
-              <Image
-                src="/images/post.jpg"
-                fill={true}
-                alt="Picture of the author"
-              />
-            </button>
-            <button className="relative size-24 md:size-72 hover:opacity-75">
-              <Image
-                src="/images/post.jpg"
-                fill={true}
-                alt="Picture of the author"
-              />
-            </button>
+            {user?.posts?.map((post, index) => (
+              <button
+                key={index}
+                className="relative size-24 md:size-72 hover:opacity-75"
+              >
+                <Image
+                  src={post.imageUrl} // Assuming each post has a `postImage` URL
+                  fill={true}
+                  alt={`Post ${index + 1}`}
+                  className="object-cover"
+                />
+              </button>
+            ))}
           </div>
         </div>
         <div className="hidden md:flex justify-center items-center lg:ml-48 pt-20 pb-12">

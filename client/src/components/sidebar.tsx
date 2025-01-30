@@ -1,5 +1,7 @@
 'use client'
 
+import { useSelector } from 'react-redux'
+import { RootState } from '@/store/store'
 import { PiHouseBold } from 'react-icons/pi'
 import { FiSearch } from 'react-icons/fi'
 import { FaRegCompass } from 'react-icons/fa'
@@ -14,6 +16,8 @@ import Upload from './upload'
 import DropdownButton from './dropdownButton'
 
 const Sidebar = () => {
+  const user = useSelector((state: RootState) => state.user)
+  console.log(user)
 
   return (
     <>
@@ -79,7 +83,7 @@ const Sidebar = () => {
             </button>
             <Upload />
             <Link
-              href="/profile"
+              href={`/${user.username}`}
               className="pl-3 pt-2 pb-2 mb-1 mt-1 flex flex-row items-center rounded-lg hover:bg-gray-200"
             >
               <CgProfile className="text-3xl" />
@@ -99,7 +103,7 @@ const Sidebar = () => {
               Threads
             </p>
           </Link>
-          <div className='flex w-full'>
+          <div className="flex w-full">
             <DropdownButton />
           </div>
         </div>
