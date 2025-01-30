@@ -55,12 +55,18 @@ export async function POST(req: NextRequest) {
     })
 
     // Generate a JWT token
-    const token = jwt.sign({ id: user.id }, process.env.JWT_SECRET as string, {
-      expiresIn: process.env.JWT_EXPIRES_IN,
-    })
+    const token = jwt.sign(
+      { id: user.id, username: user.username },
+      process.env.JWT_SECRET as string,
+      {
+        expiresIn: process.env.JWT_EXPIRES_IN,
+      }
+    )
 
     const domain =
-      process.env.NODE_ENV === 'production' ? '.instagram-clone-jade-five.vercel.app' : 'localhost'
+      process.env.NODE_ENV === 'production'
+        ? '.instagram-clone-jade-five.vercel.app'
+        : 'localhost'
 
     // Set the token as a cookie
     const cookieOptions = {

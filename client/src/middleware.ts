@@ -1,72 +1,45 @@
 import { NextResponse } from 'next/server'
 import { NextRequest } from 'next/server'
-// import jwt from 'jsonwebtoken'
-
-// interface JwtPayload {
-//   id: string
-//   username: string
-//   name: string
-//   profileImage: string
-//   iat: number
-//   exp: number
-// }
+import jwt from 'jsonwebtoken'
 
 export function middleware(request: NextRequest) {
   try {
-    const path = request.nextUrl.pathname
+    const { pathname } = request.nextUrl
+    const accessToken = request.cookies.get('accessToken')?.value
 
-    const accessToken = request.cookies.get('accessToken')
-    // const productionCookies = request.cookies.get('_vercel_jwt')
-
-    if (
-      !accessToken &&
-      // !productionCookies &&
-      path !== '/login' &&
-      path !== '/signup'
-    ) {
+    const JWT_SECRET = process.env.NEXT_PUBLIC_JWT_SECRET
+    if (!JWT_SECRET) {
+      console.error('JWT_SECRET is not defined in the environment variables')
       return NextResponse.redirect(new URL('/login', request.url))
-    } else if (accessToken && (path === '/login' || path === '/signup'))
+    }
+
+    // If no token and trying to access a protected route
+    const publicPaths = ['/login', '/signup']
+    if (!accessToken && !publicPaths.includes(pathname)) {
+      return NextResponse.redirect(new URL('/login', request.url))
+    }
+
+    // If token exists and accessing public routes
+    if (accessToken && publicPaths.includes(pathname)) {
+      const decoded = jwt.verify(accessToken, JWT_SECRET) as jwt.JwtPayload
+
+      // Optionally validate token expiration
+      if (decoded && decoded.exp && decoded.exp * 1000 < Date.now()) {
+        return NextResponse.redirect(new URL('/login', request.url))
+      }
+
       return NextResponse.redirect(new URL('/homepage', request.url))
+    }
 
-    // const decoded = accessToken
-    //   ? (jwt.decode(accessToken.value) as JwtPayload)
-    //   : null
-
-    // const decodedRefreshToken = refreshToken
-    //   ? (jwt.decode(refreshToken.value) as JwtPayload)
-    //   : null
-    // var role = decodedAccessToken ? decodedAccessToken.role : null
-    // if (!role) {
-    //   role = decodedRefreshToken ? decodedRefreshToken.role : null
-    // }
-
-    // if (role && role === UserRole.USER && path !== '/home') {
-    //   return NextResponse.redirect(new URL('/home', request.url))
-    // }
-    // if (
-    //   role &&
-    //   role === UserRole.CURATOR &&
-    //   path !== '/news-curator/rss-feeds'
-    // ) {
-    //   return NextResponse.redirect(
-    //     new URL('/news-curator/rss-feeds', request.url)
-    //   )
-    // }
-    // if (role && role === UserRole.ADMIN && path !== '/admin') {
-    //   return NextResponse.redirect(new URL('/admin', request.url))
-    // }
-
+    // Allow the request to proceed for all other cases
     return NextResponse.next()
-  } catch (e) {
-    console.error(e)
-    return NextResponse.json(
-      { error: 'Internal Server Error' },
-      { status: 500 }
-    )
+  } catch (error) {
+    console.error('Middleware error:', error)
+    return NextResponse.redirect(new URL('/login', request.url))
   }
 }
 
-// Matcher to include all routes except API and static files
+// Matcher for protected and public routes
 export const config = {
   matcher: [
     '/',
@@ -77,6 +50,6 @@ export const config = {
     '/forgot-password/reset-password',
     '/reels',
     '/explore',
-    '/profile', // Exclude API routes and static files
+    '/profile',
   ],
 }

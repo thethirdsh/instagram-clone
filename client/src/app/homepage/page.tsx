@@ -7,12 +7,9 @@ import Sidebar from '@/components/sidebar'
 import { useDispatch } from 'react-redux'
 import { setUser } from '@/store/userSlice'
 import { useEffect, useState } from 'react'
-import { JwtPayload } from 'jsonwebtoken'
-import jwt from 'jsonwebtoken'
 
 const Homepage = () => {
   const dispatch = useDispatch()
-
   const [loading, setLoading] = useState<boolean>(true)
 
   useEffect(() => {
@@ -24,33 +21,18 @@ const Homepage = () => {
 
       if (response.ok) {
         const data = await response.json()
-        const accessToken = data.accessToken
+        console.log('Data:', data)
+        // const accessToken = data.accessToken.value
         setLoading(false)
-        console.log('Access Token:', data.accessToken)
         // You can store this in Redux or state
 
-        if (accessToken) {
-          try {
-            const decoded = jwt.decode(accessToken.value) as JwtPayload
-
-            console.log('Decoded:', decoded)
-
-            if (decoded) {
-              // Assuming the token contains user information like `id`, `username`, etc.
-              dispatch(
-                setUser({
-                  userId: decoded.id,
-                })
-              )
-            }
-          } catch (error) {
-            console.error('Failed to retrieve token: ', error)
-          }
-        } else {
-          console.error('Failed to retrieve token')
-        }
-      } else {
-        console.error('Failed to retrieve token')
+        // Assuming the token contains user information like `id`, `username`, etc.
+        dispatch(
+          setUser({
+            userId: data.id,
+            username: data.username,
+          })
+        )
       }
     }
 

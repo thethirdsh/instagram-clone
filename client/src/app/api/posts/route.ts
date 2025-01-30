@@ -10,30 +10,36 @@ export const GET = async (request: Request) => {
     const allPosts = []
 
     if (id) {
+      // Fetch the users that the user is following
       const userFollows = await prisma.userFollow.findMany({
         where: { followerId: id },
       })
 
-      if (userFollows) {
+      if (userFollows.length > 0) {
+        // Loop through all the users that the current user is following
         for (const userFollow of userFollows) {
           const authorId = userFollow.followingId
+
+          // Fetch posts for each followed user
           const posts = await prisma.post.findMany({
             where: { userId: authorId },
             include: { user: { select: { username: true } } },
           })
 
+          // Add the fetched posts to the allPosts array
           allPosts.push(...posts)
         }
+
+        // If posts are found, return them
+        return NextResponse.json(allPosts)
       } else {
         return NextResponse.json({ message: 'No posts found' }, { status: 404 })
       }
-
-      return NextResponse.json(allPosts)
     } else {
-      return NextResponse.json({ error: 'Invalid ID' }, { status: 500 })
+      return NextResponse.json({ error: 'Invalid ID' }, { status: 400 })
     }
   } catch (error) {
-    console.error('Error fetching post:', error)
+    console.error('Error fetching posts:', error)
     return NextResponse.json(
       { error: 'Failed to fetch posts' },
       { status: 500 }

@@ -14,13 +14,14 @@ interface User {
 }
 
 const RightSidebar = () => {
-  const { userId } = useSelector((state: RootState) => state.user)
+  const { userId, username } = useSelector((state: RootState) => state.user)
+  console.log('User ID:', userId)
 
   const [user, setUser] = useState<User | null>(null)
   const [loading, setLoading] = useState<boolean>(true)
 
   useEffect(() => {
-    if (!userId) return
+    if (!username) return
 
     const fetchUserInfo = async () => {
       try {
