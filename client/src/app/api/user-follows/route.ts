@@ -5,9 +5,9 @@ const prisma = new PrismaClient()
 
 export const GET = async (req: Request) => {
   try {
-    const { searchParams } = new URL(req.url);
-    const id = searchParams.get("id");
-    const userId = searchParams.get("userId");
+    const { searchParams } = new URL(req.url)
+    const id = searchParams.get('id')
+    const userId = searchParams.get('userId')
 
     if (!id && !userId) {
       const userFollows = await prisma.userFollow.findMany()
@@ -31,6 +31,11 @@ export const GET = async (req: Request) => {
           { message: 'User follow not found' },
           { status: 404 }
         )
+
+      return NextResponse.json(
+        { message: 'User follow retrieved successfully', data: userFollow },
+        { status: 200 }
+      )
     }
 
     if (userId && !id) {
