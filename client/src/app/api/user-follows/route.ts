@@ -25,8 +25,7 @@ export const GET = async (req: Request) => {
     }
 
     if (id && !userId) {
-      const userFollow = await prisma.userFollow.findUnique({ where: id })
-
+      const userFollow = await prisma.userFollow.findUnique({ where: { id } })
       if (!userFollow)
         return NextResponse.json(
           { message: 'User follow not found' },
