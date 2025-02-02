@@ -21,13 +21,15 @@ interface Post {
 
 const Feed = () => {
   const [posts, setPosts] = useState<Post[]>([])
+  const [loading, setLoading] = useState(true)
   const userId = useSelector((state: RootState) => state.user.userId)
 
   const fetchPosts = async () => {
     try {
+      setLoading(true) // Set loading to true before fetching
       const response = await fetch(`/api/posts?id=${userId}`, {
         credentials: 'include',
-      }) // Adjust the endpoint as needed
+      })
       if (!response.ok) {
         throw new Error('Failed to fetch posts')
       }
@@ -35,6 +37,8 @@ const Feed = () => {
       setPosts(data)
     } catch (error) {
       console.error('Error fetching posts:', error)
+    } finally {
+      setLoading(false) // Stop loading after fetching
     }
   }
 
@@ -93,7 +97,11 @@ const Feed = () => {
 
         <Story />
       </div>
-      {posts.length === 0 ? (
+      {loading ? (
+        <div className="flex justify-center items-center h-20">
+          <div className="w-10 h-10 border-4 border-gray-200 border-t-gray-400 rounded-full animate-spin"></div>
+        </div>
+      ) : posts.length === 0 ? (
         <p className="">There are no posts to load</p>
       ) : (
         <div className="flex flex-col justify-center items-center gap-6 w-full h-full">
