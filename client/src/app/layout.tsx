@@ -2,10 +2,11 @@
 
 // import type { Metadata } from 'next'
 import localFont from 'next/font/local'
-import { Provider } from 'react-redux'
-import { store } from '@/store/store'
+// import { Provider } from 'react-redux'
+// import { store } from '@/store/store'
 import { SpeedInsights } from '@vercel/speed-insights/next'
 import './globals.css'
+import { AuthProvider } from '../context/AuthProvider';
 
 const geistSans = localFont({
   src: './fonts/GeistVF.woff',
@@ -45,10 +46,10 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} ${dancingScript.variable} ${billabong.variable} antialiased`}
       >
-        <Provider store={store}>
+        <AuthProvider >
           <SpeedInsights />
           {children}
-        </Provider>
+        </AuthProvider>
       </body>
     </html>
   )

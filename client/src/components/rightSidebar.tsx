@@ -4,8 +4,7 @@
 import Image from 'next/image'
 import { useEffect, useState } from 'react'
 // import { NextRequest } from 'next/server'
-import { useSelector } from 'react-redux'
-import { RootState } from '@/store/store'
+import { useAuth } from '@/context/AuthProvider'
 
 interface User {
   profileImage?: string
@@ -14,37 +13,42 @@ interface User {
 }
 
 const RightSidebar = () => {
-  const { userId, username } = useSelector((state: RootState) => state.user)
-  console.log('User ID:', userId)
+  const { user, loading } = useAuth()
+  console.log(useAuth())
+  console.log('User ID:', user?.userId)
 
-  const [user, setUser] = useState<User | null>(null)
-  const [loading, setLoading] = useState<boolean>(true)
+  const [loggedInUser, setLoggedInUser] = useState<User | null>(null)
+  const [infoLoading, setInfoLoading] = useState<boolean>(true)
 
   useEffect(() => {
-    if (!username) return
+    if (!user) return
 
     const fetchUserInfo = async () => {
       try {
         // Replace with your actual API endpoint
-        const response = await fetch(`/api/users/?id=${userId}`)
+        const response = await fetch(`/api/users/?id=${user.userId}`)
         if (!response.ok) {
           throw new Error('Failed to fetch user data')
         }
 
         const data = await response.json()
-        setUser(data)
-        setLoading(false)
+        setLoggedInUser(data)
+        setInfoLoading(false)
       } catch (err: unknown) {
-        setLoading(false)
+        setInfoLoading(false)
         console.error('Error fetching user data:', err)
       }
     }
 
     fetchUserInfo()
-  }, [userId])
+  }, [user])
+
+  if (infoLoading) {
+    return <></>
+  }
 
   if (loading) {
-    return <></>
+    return <></> // Show this while fetching user data
   }
 
   return (
@@ -55,7 +59,7 @@ const RightSidebar = () => {
             <button className="relative w-10 h-10">
               <Image
                 className="border-2 border-white rounded-full"
-                src={user?.profileImage || '/images/profile.png'}
+                src={loggedInUser?.profileImage || '/images/profile.png'}
                 fill={true}
                 alt="/images/profile.png"
               />
@@ -63,9 +67,11 @@ const RightSidebar = () => {
           </div>
           <div className="flex flex-col justify-center">
             <p className="text-sm font-bold text-black">
-              {user?.username || 'username'}
+              {loggedInUser?.username || 'username'}
             </p>
-            <p className="text-sm text-gray-500">{user?.name || 'Full Name'}</p>
+            <p className="text-sm text-gray-500">
+              {loggedInUser?.name || 'Full Name'}
+            </p>
           </div>
         </div>
 
