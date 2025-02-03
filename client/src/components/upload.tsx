@@ -1,8 +1,6 @@
 'use client'
 
 import { useState } from 'react'
-import { useSelector } from 'react-redux'
-import { RootState } from '@/store/store'
 import {
   Modal,
   ModalContent,
@@ -14,9 +12,11 @@ import {
 } from '@nextui-org/react'
 import { FaRegSquarePlus } from 'react-icons/fa6'
 import Image from 'next/image'
+import { useAuth } from '@/context/AuthProvider'
 
 export default function Upload() {
-  const { userId } = useSelector((state: RootState) => state.user)
+  const { user, loading } = useAuth()
+  const userId = user?.userId
   const { isOpen, onOpen, onOpenChange } = useDisclosure()
   //const [caption, setCaption] = useState<string>('')
   const [file, setFile] = useState<File | null>(null)
@@ -99,6 +99,8 @@ export default function Upload() {
       alert('Failed to create post')
     }
   }
+
+  if (loading) return <></>
 
   return (
     <>

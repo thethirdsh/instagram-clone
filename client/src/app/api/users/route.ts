@@ -9,7 +9,7 @@ export const GET = async (request: Request) => {
     const id = searchParams.get('id')
     const username = searchParams.get('username')
 
-    if (id) {
+    if (id && !username) {
       const user = await prisma.user.findUnique({ where: { id } })
 
       if (!user)
@@ -25,7 +25,13 @@ export const GET = async (request: Request) => {
       if (!user)
         return NextResponse.json({ message: 'User not found' }, { status: 404 })
 
-      return NextResponse.json(user)
+      const response = NextResponse.json(user)
+      response.headers.set(
+        'Cache-Control',
+        's-maxage=3600, stale-while-revalidate'
+      )
+
+      return response
     } else {
       const users = await prisma.user.findMany()
       if (users.length === 0 || !users)

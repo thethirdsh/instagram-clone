@@ -3,8 +3,7 @@
 import { useEffect, useState } from 'react'
 import Post from './post'
 import Story from './story'
-import { useSelector } from 'react-redux'
-import { RootState } from '@/store/store'
+import { useAuth } from '@/context/AuthProvider'
 
 interface Author {
   username: string
@@ -21,13 +20,13 @@ interface Post {
 
 const Feed = () => {
   const [posts, setPosts] = useState<Post[]>([])
-  const [loading, setLoading] = useState(true)
-  const userId = useSelector((state: RootState) => state.user.userId)
+  const [feedLoading, setFeedLoading] = useState(true)
+  const { user, loading } = useAuth()
 
   const fetchPosts = async () => {
     try {
-      setLoading(true) // Set loading to true before fetching
-      const response = await fetch(`/api/posts?id=${userId}`, {
+      setFeedLoading(true) // Set loading to true before fetching
+      const response = await fetch(`/api/posts?id=${user?.userId}`, {
         credentials: 'include',
       })
       if (!response.ok) {
@@ -38,13 +37,17 @@ const Feed = () => {
     } catch (error) {
       console.error('Error fetching posts:', error)
     } finally {
-      setLoading(false) // Stop loading after fetching
+      setFeedLoading(false) // Stop loading after fetching
     }
   }
 
   useEffect(() => {
     fetchPosts()
-  }, [])
+  }, []) // Fetch posts when user ID changes
+
+  if (loading) {
+    return <></> // Show this while fetching user data
+  }
 
   return (
     <div className="flex flex-col justify-center items-center bg-white py-6 gap-6 w-full h-full">
@@ -97,7 +100,7 @@ const Feed = () => {
 
         <Story />
       </div>
-      {loading ? (
+      {feedLoading ? (
         <div className="flex justify-center items-center h-20">
           <div className="w-10 h-10 border-4 border-gray-200 border-t-gray-400 rounded-full animate-spin"></div>
         </div>

@@ -8,8 +8,10 @@ export const GET = async (req: Request) => {
     const { searchParams } = new URL(req.url)
     const id = searchParams.get('id')
     const userId = searchParams.get('userId')
+    const followerId = searchParams.get('followerId')
+    const followingId = searchParams.get('followingId')
 
-    if (!id && !userId) {
+    if (!id && !userId && !followerId && !followingId) {
       const userFollows = await prisma.userFollow.findMany()
 
       if (userFollows.length == 0)
@@ -24,7 +26,7 @@ export const GET = async (req: Request) => {
       )
     }
 
-    if (id && !userId) {
+    if (id && !userId && !followerId && !followingId) {
       const userFollow = await prisma.userFollow.findUnique({ where: { id } })
       if (!userFollow)
         return NextResponse.json(
@@ -38,7 +40,7 @@ export const GET = async (req: Request) => {
       )
     }
 
-    if (userId && !id) {
+    if (userId && !id && !followerId && !followingId) {
       const userFollows = await prisma.userFollow.findMany({
         where: { followerId: userId },
       })
@@ -51,6 +53,23 @@ export const GET = async (req: Request) => {
 
       return NextResponse.json(userFollows)
     }
+
+    if (followerId && followingId && !id && !userId) {
+      const userFollow = await prisma.userFollow.findFirst({
+        where: { followerId, followingId },
+      })
+
+      if (!userFollow)
+        return NextResponse.json(
+          { message: 'User follow not found' },
+          { status: 404 }
+        )
+
+      return NextResponse.json(
+        { message: 'User follow retrieved successfully', data: userFollow },
+        { status: 200 }
+      )
+    }
   } catch (error) {
     console.error('Error fetching user follows:', error)
   }
@@ -62,6 +81,17 @@ export const POST = async (req: Request) => {
 
     if (!followerId || !followingId)
       return NextResponse.json({ message: 'Invalid IDs' }, { status: 400 })
+
+    const existingFollow = await prisma.userFollow.findFirst({
+      where: { followerId, followingId },
+    })
+
+    if (existingFollow) {
+      return NextResponse.json(
+        { message: 'User is already following this account' },
+        { status: 409 } // 409 Conflict
+      )
+    }
 
     const userFollow = await prisma.userFollow.create({
       data: { followerId, followingId },

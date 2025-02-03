@@ -1,7 +1,5 @@
 'use client'
 
-import { useSelector } from 'react-redux'
-import { RootState } from '@/store/store'
 import { PiHouseBold } from 'react-icons/pi'
 import { FiSearch } from 'react-icons/fi'
 import { FaRegCompass } from 'react-icons/fa'
@@ -14,10 +12,11 @@ import { FaInstagram } from 'react-icons/fa'
 import Link from 'next/link'
 import Upload from './upload'
 import DropdownButton from './dropdownButton'
+import { useAuth } from '@/context/AuthProvider'
 
 const Sidebar = () => {
-  const user = useSelector((state: RootState) => state.user)
-  console.log(user)
+  const { user } = useAuth()
+  console.log(useAuth())
 
   return (
     <>
@@ -83,7 +82,7 @@ const Sidebar = () => {
             </button>
             <Upload />
             <Link
-              href={`/${user.username}`}
+              href={`/${user?.username}`}
               className="pl-3 pt-2 pb-2 mb-1 mt-1 flex flex-row items-center rounded-lg hover:bg-gray-200"
             >
               <CgProfile className="text-3xl" />
